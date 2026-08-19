@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+config=/etc/t2fand.conf
+[[ ${1:-} == status ]] || { echo "usage: $0 status" >&2; exit 64; }
+
+if awk -F= '$1 == "always_full_speed" && $2 == "true" { found = 1 } END { exit !found }' "$config" 2>/dev/null; then
+  echo full
+elif awk -F= '
+  $1 == "low_temp" { low = low && $2 == "35"; saw_low = 1 }
+  $1 == "high_temp" { high = high && $2 == "75"; saw_high = 1 }
+  $1 == "always_full_speed" { full = full && $2 == "false"; saw_full = 1 }
+  BEGIN { low = high = full = 1 }
+  END { exit !(saw_low && saw_high && saw_full && low && high && full) }
+' "$config" 2>/dev/null; then
+  echo balanced
+else
+  echo automatic
+fi

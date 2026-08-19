@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "benekuehn.macbook-fans",
+  "name": "MacBook Fans",
+  "version": "1.0.0",
+  "author": "benekuehn",
+  "license": "MIT",
+  "description": "MacBook T2 fan profiles and live fan speeds",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "BarWidget.qml" },
+  "barWidget": {
+    "displayName": "MacBook Fans",
+    "description": "Choose automatic, balanced, or full-speed T2 fan control",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

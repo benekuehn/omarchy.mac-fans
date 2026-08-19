@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+
+[[ $EUID -eq 0 ]] || { echo "run with sudo" >&2; exit 1; }
+src=$(cd -- "$(dirname -- "$0")" && pwd)
+install -Dm755 "$src/system/omarchy-macbook-fans-profile" /usr/local/libexec/omarchy-macbook-fans-profile
+install -Dm644 "$src/system/90-omarchy-macbook-fans.rules" /etc/polkit-1/rules.d/90-omarchy-macbook-fans.rules
