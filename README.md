@@ -1,5 +1,7 @@
 # MacBook Fans for Omarchy
 
+![MacBook Fans popover](assets/macbook-fans-popover.png)
+
 An Omarchy bar widget for controlling `t2fanrd` on Intel MacBooks with Apple's T2 chip. It displays both fan RPMs and offers three profiles:
 
 - **Automatic** — 55–75°C linear curve.
